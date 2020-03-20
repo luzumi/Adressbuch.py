@@ -1,6 +1,3 @@
-from Telefonbuch_fenster.py import *
-
-
 """
     Klasse Telefonbuch
         addNummer(nummer)^^
@@ -23,6 +20,7 @@ class Telefonbuch:
     def __exit__(self, *args):
         print('__exit__')
         self.connection.close()
+
 
     """ Fuegt der DB einen neuen Eintrag hinzu. """
     def addNummer(self,vorname,name,nummer):
@@ -58,6 +56,3 @@ class Telefonbuch:
         self.c.execute(sql,params)
         self.conn.commit()          #wichtig damit die änderung in der DB datei geschrieben wird
 
-
-
-    
