@@ -1,3 +1,6 @@
+from Telefonbuch_fenster.py import *
+
+
 """
     Klasse Telefonbuch
         addNummer(nummer)^^
@@ -10,7 +13,7 @@ import sqlite3 #'modul zum Ansprechen der SQLite-Datenbank'
 
 class Telefonbuch:
 
-    """Konstruktor zur Vorbereitung des Datenzugriffs"""
+    """Constructor zur Vorbereitung des Datenzugriffs"""
     def __init__(self): #übernimmt keine Argumente, leerer Konstruktor, der intern alles bereitstellt
         self.conn = sqlite3.connect('contacts.db')    #handle zur Datenbank "contacts"
         self.c = self.conn.cursor()         #cursor c übergibt die anfrage an die db
@@ -21,11 +24,10 @@ class Telefonbuch:
         print('__exit__')
         self.connection.close()
 
-    
     """ Fuegt der DB einen neuen Eintrag hinzu. """
     def addNummer(self,vorname,name,nummer):
         #Vorbedingung_setzen
-        assert(isinstance(nummer,str))      #prüft ob einträge vom typ string sind, 
+        assert(isinstance(nummer,str))      #prüft ob einträge vom typ string sind,
         assert(isinstance(vorname,str))     #wenn nicht bricht das programm ab um fehler zu vermeiden
         assert(isinstance(name,str))        #Python typisiert Datentypen schwach bis gar nicht
         params = (vorname, name, nummer)    #Tupel, einfacher zum einbinden in die SQL-Anfrage
@@ -39,15 +41,15 @@ class Telefonbuch:
         #Vorbedingung_setzen
         assert(isinstance(name,str))      #prüft ob einträge vom typ string sind
         assert(isinstance(vorname,str))
-        liste = []                          #benötigt um Tupels in Liste von Strings umzuwandeln          
+        liste = []                          #benötigt um Tupels in Liste von Strings umzuwandeln
         params = (vorname,name)
         sql = "SELECT telefon FROM contacts WHERE vorname = ? AND name = ?"
-        self.c.execute(sql,params)          
+        self.c.execute(sql,params)
         for row in self.c.fetchall():       #der einzelne Datensatz von self.c (Liste von tTupel) wird in Liste geschrieben
             liste.append(str(row[0]))
 
 
-    """Löscht Datensatz zur angegebenen Telefonnummer""" 
+    """Löscht Datensatz zur angegebenen Telefonnummer"""
     def deleteNummer(self,nummer):
         #Vorbedingung_setzen
         assert(isinstance(nummer,str))

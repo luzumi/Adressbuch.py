@@ -11,7 +11,7 @@ class TestTelefonbuch(unittest.TestCase):       #erbt con unittest.Testcase
   
     def testAddnummer(self):
         self.testObj.addNummer("Daniel","Neubieser","0172/4283230")
-        self.assertEqual(self.testObj.getNummer("Daniel","Neubieser"),[0],"0172/4283230")
+        self.assertEqual(self.testObj.getNummer("Daniel","Neubieser"),"0172/4283230")
        
     #def testDeleteNummer(self):
         liste = []
